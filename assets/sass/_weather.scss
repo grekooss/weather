@@ -20,4 +20,19 @@
 		margin: 0 0 40px 0;
 		@include fluid-type(320px, 1920px, 30px, 60px);
 	}
+	&__form {
+		width: min(100% - 30px, 550px);
+	}
+	&__city {
+		width: 100%;
+		padding: 10px;
+		border: none;
+		outline: none;
+		border-radius: 25px;
+		margin: 0 0 30px 0;
+
+		&::placeholder {
+			text-align: center;
+		}
+	}
 }
