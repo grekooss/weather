@@ -349,3 +349,40 @@ h6 {
 .weather__city::placeholder {
   text-align: center;
 }
+.weather__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.weather__region p, .weather__details p {
+  margin: 0 0 5px 0;
+}
+.weather__region p:last-of-type, .weather__details p:last-of-type {
+  margin: 0;
+}
+.weather__temp {
+  font-size: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.weather__temp span {
+  font-size: 30px;
+  padding: 6px 0 0 0;
+}
+.weather__error {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: red;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+}
