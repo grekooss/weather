@@ -3,13 +3,17 @@ let cityInput = document.querySelector('.weather__city')
 let apiUrl =
 	'https://api.weatherapi.com/v1/current.json?key=bccad9c366574566a7d165501231506&aqi=no&q='
 let apiDataContainer = document.querySelector('.weather__data')
+let loader = document.querySelector('.weather__loader')
+let gpsButton = document.querySelector('.weather__gps')
 
 weartherForm.addEventListener('submit', (event) => {
+	showLoader()
 	let city = cityInput.value
 	let fullApiUrl = apiUrl + city
 
 	fetch(fullApiUrl)
 		.then((response) => {
+			hideLoader()
 			if (response.status === 200) {
 				return response.json()
 			}
@@ -17,6 +21,7 @@ weartherForm.addEventListener('submit', (event) => {
 			throw new Error()
 		})
 		.then((dataFromApi) => {
+			cityInput.value = dataFromApi.location.name
 			// console.log(dataFromApi.current.temp_c)
 			let view = ``
 			// view += `Dzisiaj w ${dataFromApi.location.name} jest ${dataFromApi.current.temp_c} &deg;C`
@@ -56,4 +61,19 @@ let showError = () => {
 	apiDataContainer.innerHTML = `<div class="weather__error">City not found or We have problem with API</div>`
 }
 
-// bccad9c366574566a7d165501231506
+let showLoader = () => {
+	loader.style.display = 'block'
+}
+let hideLoader = () => {
+	loader.style.display = 'none'
+}
+//gps
+gpsButton.addEventListener('click', (event) => {
+	navigator.geolocation.getCurrentPosition(searchPosition)
+})
+
+let searchPosition = (position) => {
+	// console.log(position)
+	cityInput.value = `${position.coords.latitude},${position.coords.longitude}`
+	weartherForm.requestSubmit()
+}
